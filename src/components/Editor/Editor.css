@@ -1,0 +1,107 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+   Editor component — BEM: .editor
+───────────────────────────────────────────────────────────────────────────── */
+.editor {
+  background:    var(--color-surface-lowest);
+  border-radius: var(--radius-xl);
+  padding:       0.5rem;
+  box-shadow:    var(--shadow-card);
+  outline:       1px solid rgba(188, 201, 206, 0.12);
+  transition:    box-shadow 0.25s, outline-color 0.25s;
+}
+
+.editor:focus-within {
+  box-shadow:    0 0 0 3px rgba(31, 185, 222, 0.1), var(--shadow-card);
+  outline-color: rgba(109, 121, 126, 0.15);
+}
+
+.editor__textarea {
+  width:        100%;
+  min-height:   19.2rem;
+  padding:      2rem;
+  background:   transparent;
+  border:       none;
+  outline:      none;
+  resize:       none;
+  font-family:  var(--font-body);
+  font-size:    1.05rem;
+  line-height:  1.75;
+  color:        var(--color-on-surface);
+}
+
+.editor__textarea::placeholder { color: var(--color-outline-variant); }
+
+/* ─── Toolbar ─────────────────────────────────────────────────────────────── */
+.editor__toolbar {
+  display:         flex;
+  flex-direction:  column;
+  align-items:     flex-start;
+  gap:             1.25rem;
+  padding:         1rem 1.5rem 1.5rem;
+  flex-wrap:       wrap;
+}
+
+.editor__stats {
+  display: flex;
+  gap:     2rem;
+  align-items: center;
+}
+
+.editor__stat {
+  display:        flex;
+  flex-direction: column;
+}
+
+.editor__stat-label {
+  font-family:    var(--font-body);
+  font-weight:    700;
+  font-size:      0.6rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color:          var(--color-on-surface-variant);
+}
+
+.editor__stat-value {
+  font-family: var(--font-headline);
+  font-weight: 700;
+  font-size:   1.2rem;
+  color:       var(--color-on-surface);
+}
+
+.editor__stat-divider {
+  width:            1px;
+  height:           2rem;
+  background-color: rgba(188, 201, 206, 0.3);
+}
+
+/* ─── Analyze button ─────────────────────────────────────────────────────── */
+.editor__btn {
+  display:         flex;
+  align-items:     center;
+  gap:             0.6rem;
+  padding:         0.9rem 2.5rem;
+  background:      linear-gradient(135deg, var(--color-secondary-btn), var(--color-on-secondary-btn));
+  color:           #ffffff;
+  font-family:     var(--font-headline);
+  font-weight:     700;
+  font-size:       1rem;
+  border:          none;
+  border-radius:   var(--radius-full);
+  cursor:          pointer;
+  box-shadow:      var(--shadow-button);
+  transition:      transform 0.15s, box-shadow 0.2s, opacity 0.2s;
+  white-space:     nowrap;
+}
+
+.editor__btn:hover { box-shadow: 0 16px 40px -8px rgba(0, 103, 126, 0.22); }
+.editor__btn:active { transform: scale(0.96); }
+.editor__btn:disabled { opacity: 0.55; cursor: not-allowed; transform: none; }
+
+/* ─── Responsive ──────────────────────────────────────────────────────────── */
+@media (min-width: 640px) {
+  .editor__toolbar {
+    flex-direction: row;
+    align-items:    center;
+    justify-content: space-between;
+  }
+}

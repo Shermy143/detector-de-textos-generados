@@ -1,0 +1,200 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+   ResultsPanel component — BEM: .results
+───────────────────────────────────────────────────────────────────────────── */
+
+/* ─── Idle state ──────────────────────────────────────────────────────────── */
+.results {
+  background:    var(--color-surface-low);
+  border-radius: var(--radius-xl);
+  padding:       2rem;
+  outline:       1px solid rgba(188, 201, 206, 0.1);
+  box-shadow:    var(--shadow-card);
+  display:       flex;
+  flex-direction: column;
+  gap:           1.5rem;
+  min-height:    12rem;
+}
+
+/* ─── Header row ──────────────────────────────────────────────────────────── */
+.results__header {
+  display:         flex;
+  flex-direction:  column;
+  gap:             0.75rem;
+}
+
+.results__meta-label {
+  font-family:    var(--font-body);
+  font-weight:    700;
+  font-size:      0.6rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color:          var(--color-on-surface-variant);
+}
+
+.results__title {
+  font-family:  var(--font-headline);
+  font-size:    2.5rem;
+  font-weight:  800;
+  color:        var(--color-secondary);
+  line-height:  1.1;
+}
+
+.results__title--idle { font-size: 1.5rem; font-weight: 600; }
+
+.results__title--ai     { color: var(--color-primary-dark); }
+.results__title--human  { color: #1a8d5f; }
+.results__title--uncertain { color: #92600a; }
+
+/* ─── Confidence badge ────────────────────────────────────────────────────── */
+.results__confidence {
+  text-align: right;
+}
+
+.results__confidence-value {
+  font-family:  var(--font-headline);
+  font-size:    2rem;
+  font-weight:  700;
+  color:        var(--color-primary);
+}
+
+.results__confidence--human     .results__confidence-value { color: #1a8d5f; }
+.results__confidence--uncertain .results__confidence-value { color: #92600a; }
+
+/* ─── Abstention badge ─────────────────────────────────────────────────────── */
+.results__abstain-badge {
+  display:         inline-flex;
+  align-items:     center;
+  gap:             0.35rem;
+  margin-top:      0.4rem;
+  padding:         0.3rem 0.75rem;
+  background:      rgba(146, 96, 10, 0.10);
+  color:           #92600a;
+  border-radius:   var(--radius-full);
+  font-size:       0.75rem;
+  font-weight:     600;
+  letter-spacing:  0.03em;
+}
+
+.results__top-row {
+  display:         flex;
+  flex-direction:  row;
+  align-items:     flex-end;
+  justify-content: space-between;
+  flex-wrap:       wrap;
+  gap:             1rem;
+}
+
+/* ─── Progress bar ────────────────────────────────────────────────────────── */
+.results__bar-wrapper { display: flex; flex-direction: column; gap: 0.5rem; }
+
+.results__bar-labels {
+  display:         flex;
+  justify-content: space-between;
+  font-family:     var(--font-headline);
+  font-size:       0.6rem;
+  font-weight:     700;
+  letter-spacing:  0.1em;
+  text-transform:  uppercase;
+  color:           var(--color-on-surface-variant);
+}
+
+.results__bar-track {
+  height:        0.75rem;
+  background:    var(--color-surface-highest);
+  border-radius: var(--radius-full);
+  overflow:      hidden;
+  position:      relative;
+}
+
+.results__bar-fill {
+  height:        100%;
+  border-radius: var(--radius-full);
+  background:    linear-gradient(90deg, var(--color-secondary), var(--color-primary));
+  position:      relative;
+  overflow:      hidden;
+  transition:    width 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.results__bar-fill--uncertain {
+  background: linear-gradient(90deg, #c47c00, #f59e0b);
+}
+
+/* Scanning animation stripe */
+.results__bar-fill::after {
+  content:    '';
+  position:   absolute;
+  inset:      0;
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.30) 50%, transparent 100%);
+  background-size: 200% 100%;
+  animation:  scanning 1.8s ease-in-out infinite;
+}
+
+@keyframes scanning {
+  0%   { background-position: 200% center; }
+  100% { background-position: -200% center; }
+}
+
+/* ─── Detail chips ────────────────────────────────────────────────────────── */
+.results__chips {
+  display:   grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap:       0.75rem;
+}
+
+.results__chip {
+  padding:       0.85rem 1rem;
+  background:    var(--color-surface-lowest);
+  border-radius: var(--radius-md);
+  outline:       1px solid rgba(188, 201, 206, 0.1);
+  display:       flex;
+  flex-direction: column;
+  gap:           0.2rem;
+}
+
+.results__chip-label {
+  font-family:    var(--font-body);
+  font-weight:    700;
+  font-size:      0.55rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color:          var(--color-on-surface-variant);
+}
+
+.results__chip-value {
+  font-family: var(--font-headline);
+  font-size:   1rem;
+  font-weight: 700;
+  color:       var(--color-on-surface);
+}
+
+/* ─── Loading skeleton ─────────────────────────────────────────────────────── */
+.results__skeleton {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  animation: pulse 1.4s ease-in-out infinite;
+}
+
+.results__skeleton-line {
+  background:    var(--color-surface-highest);
+  border-radius: var(--radius-sm);
+  height:        1rem;
+}
+.results__skeleton-line--lg  { height: 2.5rem; width: 60%; }
+.results__skeleton-line--bar { height: 0.75rem; width: 100%; }
+.results__skeleton-line--sm  { height: 0.6rem; width: 40%; }
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.45; }
+}
+
+/* ─── Error state ─────────────────────────────────────────────────────────── */
+.results__error {
+  display:     flex;
+  align-items: center;
+  gap:         0.75rem;
+  color:       #b91c1c;
+  font-weight: 600;
+  font-size:   0.9rem;
+}
