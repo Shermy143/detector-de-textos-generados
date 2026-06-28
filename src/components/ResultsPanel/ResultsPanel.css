@@ -142,13 +142,13 @@
 }
 
 .results__chip {
-  padding:       0.85rem 1rem;
+  padding:       1.1rem 1.25rem;
   background:    var(--color-surface-lowest);
   border-radius: var(--radius-md);
   outline:       1px solid rgba(188, 201, 206, 0.1);
   display:       flex;
   flex-direction: column;
-  gap:           0.2rem;
+  gap:           0.35rem;
 }
 
 .results__chip-label {
@@ -162,7 +162,7 @@
 
 .results__chip-value {
   font-family: var(--font-headline);
-  font-size:   1rem;
+  font-size:   1.6rem;
   font-weight: 700;
   color:       var(--color-on-surface);
 }

@@ -1,5 +1,5 @@
 """
-FastAPI application entry point — Detector de IA
+FastAPI application entry point — Detector de Texto Generado por IA
 """
 import os
 from contextlib import asynccontextmanager

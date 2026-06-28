@@ -7,70 +7,18 @@
   min-height:     100vh;
 }
 
-/* ─── Hero intro ──────────────────────────────────────────────────────────── */
-.hero {
-  padding:     8rem 2rem 3rem;
-  max-width:   1280px;
-  margin:      0 auto;
-  width:       100%;
-}
-
-.hero__eyebrow {
-  font-family:    var(--font-body);
-  font-weight:    700;
-  font-size:      0.6rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color:          var(--color-primary-dark);
-  margin-bottom:  0.5rem;
-}
-
-.hero__title {
-  font-family:  var(--font-headline);
-  font-size:    clamp(2rem, 5vw, 3.25rem);
-  font-weight:  700;
-  color:        var(--color-secondary);
-  line-height:  1.1;
-  letter-spacing: -0.03em;
-  margin-bottom: 0.75rem;
-}
-
-.hero__title span {
-  color: var(--color-primary);
-}
-
-.hero__subtitle {
-  color:       var(--color-on-surface-variant);
-  font-size:   1rem;
-  max-width:   38rem;
-  line-height: 1.65;
-}
-
 /* ─── Detector section ────────────────────────────────────────────────────── */
 .detector {
   flex:       1;
-  padding:    0 2rem 5rem;
-  max-width:  1280px;
+  padding:    8rem 2rem 5rem;
+  max-width:  900px;
   margin:     0 auto;
   width:      100%;
 }
 
-.detector__grid {
-  display:               grid;
-  grid-template-columns: 1fr;
-  gap:                   2rem;
-  align-items:           start;
-}
-
+/* Columna única centrada */
 .detector__workspace {
   display:        flex;
   flex-direction: column;
   gap:            1.5rem;
-}
-
-/* ─── Responsive ──────────────────────────────────────────────────────────── */
-@media (min-width: 1024px) {
-  .detector__grid {
-    grid-template-columns: 1fr 2.2fr;
-  }
 }

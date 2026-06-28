@@ -1,0 +1,210 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+   LandingPage component — BEM: .landing
+───────────────────────────────────────────────────────────────────────────── */
+.landing {
+  min-height:     100vh;
+  display:        flex;
+  flex-direction: column;
+  align-items:    center;
+  justify-content: center;
+  padding:        3rem 1.5rem;
+  background:     linear-gradient(160deg, #f0f8fc 0%, var(--color-surface) 55%, #eaf3f7 100%);
+  position:       relative;
+  overflow:       hidden;
+}
+
+/* Círculos decorativos de fondo */
+.landing::before,
+.landing::after {
+  content:       '';
+  position:      absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.landing::before {
+  width:      48rem;
+  height:     48rem;
+  top:        -18rem;
+  right:      -18rem;
+  background: radial-gradient(circle, rgba(31, 185, 222, 0.08) 0%, transparent 70%);
+}
+
+.landing::after {
+  width:      36rem;
+  height:     36rem;
+  bottom:     -14rem;
+  left:       -12rem;
+  background: radial-gradient(circle, rgba(1, 57, 114, 0.06) 0%, transparent 70%);
+}
+
+/* ─── Tarjeta central ─────────────────────────────────────────────────────── */
+.landing__card {
+  position:       relative;
+  z-index:        1;
+  background:     rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius:  var(--radius-xl);
+  padding:        3.5rem 3rem;
+  max-width:      620px;
+  width:          100%;
+  box-shadow:     0 8px 40px -8px rgba(0, 103, 126, 0.12), 0 1px 0 rgba(255,255,255,0.8) inset;
+  outline:        1px solid rgba(188, 201, 206, 0.2);
+  text-align:     center;
+  display:        flex;
+  flex-direction: column;
+  align-items:    center;
+  gap:            2rem;
+}
+
+/* ─── Cabecera ────────────────────────────────────────────────────────────── */
+.landing__badge {
+  display:        inline-flex;
+  align-items:    center;
+  gap:            0.45rem;
+  padding:        0.35rem 1rem;
+  background:     rgba(31, 185, 222, 0.1);
+  border:         1px solid rgba(31, 185, 222, 0.25);
+  border-radius:  var(--radius-full);
+  font-family:    var(--font-body);
+  font-size:      0.7rem;
+  font-weight:    700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color:          var(--color-primary-dark);
+}
+
+.landing__title {
+  font-family:    var(--font-headline);
+  font-size:      clamp(1.75rem, 4vw, 2.5rem);
+  font-weight:    800;
+  color:          var(--color-secondary);
+  line-height:    1.15;
+  letter-spacing: -0.03em;
+}
+
+.landing__title span {
+  color: var(--color-primary);
+}
+
+/* ─── Info cards ──────────────────────────────────────────────────────────── */
+.landing__info {
+  display:        flex;
+  flex-direction: column;
+  gap:            0.85rem;
+  width:          100%;
+}
+
+.landing__info-item {
+  display:        flex;
+  align-items:    flex-start;
+  gap:            0.85rem;
+  padding:        0.9rem 1.1rem;
+  background:     var(--color-surface-low);
+  border-radius:  var(--radius-md);
+  text-align:     left;
+  outline:        1px solid rgba(188, 201, 206, 0.12);
+}
+
+.landing__info-icon {
+  font-size:  1.3rem;
+  color:      var(--color-primary);
+  flex-shrink: 0;
+  margin-top: 0.05rem;
+}
+
+.landing__info-text {
+  display:        flex;
+  flex-direction: column;
+  gap:            0.15rem;
+}
+
+.landing__info-label {
+  font-family:    var(--font-body);
+  font-size:      0.6rem;
+  font-weight:    700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color:          var(--color-on-surface-variant);
+}
+
+.landing__info-desc {
+  font-family: var(--font-body);
+  font-size:   0.875rem;
+  font-weight: 500;
+  color:       var(--color-on-surface);
+  line-height: 1.55;
+}
+
+.landing__info-desc strong {
+  color:       var(--color-primary-dark);
+  font-weight: 700;
+}
+
+/* ─── Divisor ─────────────────────────────────────────────────────────────── */
+.landing__divider {
+  width:      100%;
+  height:     1px;
+  background: linear-gradient(90deg, transparent, rgba(188, 201, 206, 0.4), transparent);
+}
+
+/* ─── Creadores ───────────────────────────────────────────────────────────── */
+.landing__authors {
+  display:        flex;
+  flex-direction: column;
+  align-items:    center;
+  gap:            0.5rem;
+}
+
+.landing__authors-label {
+  font-family:    var(--font-body);
+  font-size:      0.6rem;
+  font-weight:    700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color:          var(--color-on-surface-variant);
+}
+
+.landing__authors-list {
+  display:        flex;
+  flex-direction: column;
+  gap:            0.3rem;
+  align-items:    center;
+}
+
+.landing__author {
+  font-family: var(--font-headline);
+  font-size:   0.95rem;
+  font-weight: 700;
+  color:       var(--color-secondary);
+  letter-spacing: -0.01em;
+}
+
+/* ─── Botón continuar ────────────────────────────────────────────────────── */
+.landing__btn {
+  display:        inline-flex;
+  align-items:    center;
+  gap:            0.5rem;
+  padding:        0.8rem 2.2rem;
+  background:     linear-gradient(135deg, var(--color-secondary-btn), var(--color-on-secondary-btn));
+  color:          #ffffff;
+  font-family:    var(--font-headline);
+  font-weight:    700;
+  font-size:      0.95rem;
+  border:         none;
+  border-radius:  var(--radius-full);
+  cursor:         pointer;
+  box-shadow:     var(--shadow-button);
+  transition:     transform 0.18s, box-shadow 0.2s;
+  white-space:    nowrap;
+}
+
+.landing__btn:hover {
+  transform:  translateY(-2px);
+  box-shadow: 0 16px 40px -8px rgba(0, 103, 126, 0.25);
+}
+
+.landing__btn:active {
+  transform: scale(0.96);
+}
