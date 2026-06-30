@@ -7,6 +7,7 @@ Pipeline completo:
   3. Calibración isotónica
   4. Abstención en zona de incertidumbre [0.44, 0.56]
 """
+import os
 import re
 import gc
 import json
@@ -20,14 +21,46 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from sentence_transformers import SentenceTransformer
+from huggingface_hub import hf_hub_download
 
 warnings.filterwarnings("ignore")
 
-# ── Rutas (relativas al directorio models/) ────────────────────────────────────
-_MODELS_DIR     = Path(__file__).parent.parent / "models"
-MODEL_PATH      = _MODELS_DIR / "best_model.pt"
-CALIBRATOR_PATH = _MODELS_DIR / "isotonic_calibrator.pkl"
-THRESHOLD_PATH  = _MODELS_DIR / "threshold_config.json"
+# ── Repositorio Hugging Face con los pesos del modelo ──────────────────────────
+HF_REPO_ID = "Doffy143/mStyleDistance-finetunned"
+
+# ── Rutas locales (para desarrollo) ───────────────────────────────────────────
+_MODELS_DIR = Path(__file__).parent.parent / "models"
+
+# ── Archivos del modelo y sus nombres en el repositorio HF ────────────────────
+_MODEL_FILES = {
+    "best_model.pt":           _MODELS_DIR / "best_model.pt",
+    "isotonic_calibrator.pkl": _MODELS_DIR / "isotonic_calibrator.pkl",
+    "threshold_config.json":   _MODELS_DIR / "threshold_config.json",
+}
+
+
+def _resolve_file(filename: str) -> str:
+    """Busca el archivo local; si no existe, lo descarga desde Hugging Face."""
+    local_path = _MODEL_FILES[filename]
+
+    if local_path.exists():
+        print(f"[model_loader] '{filename}' encontrado localmente.")
+        return str(local_path)
+
+    print(f"[model_loader] '{filename}' no encontrado localmente, descargando desde HF...")
+    downloaded = hf_hub_download(
+        repo_id=HF_REPO_ID,
+        filename=filename,
+        cache_dir=os.environ.get("HF_HOME", None),
+    )
+    print(f"[model_loader] '{filename}' descargado en: {downloaded}")
+    return downloaded
+
+
+# ── Rutas resueltas (se calculan en load_model) ──────────────────────────────
+MODEL_PATH      = None
+CALIBRATOR_PATH = None
+THRESHOLD_PATH  = None
 
 # ── Hiperparámetros de inferencia (alineados con CONFIG del notebook v9) ───────
 MODEL_NAME = "StyleDistance/mStyleDistance"
@@ -125,9 +158,15 @@ _threshold_cfg: dict = {}
 def load_model():
     """Carga el modelo, calibrador y configuración de umbral (singleton)."""
     global _model, _tokenizer, _calibrator, _threshold_cfg
+    global MODEL_PATH, CALIBRATOR_PATH, THRESHOLD_PATH
 
     if _model is not None:
         return _model, _tokenizer, _calibrator, _threshold_cfg
+
+    # ── Resolver rutas (local o Hugging Face) ──────────────────────────────────
+    MODEL_PATH      = _resolve_file("best_model.pt")
+    CALIBRATOR_PATH = _resolve_file("isotonic_calibrator.pkl")
+    THRESHOLD_PATH  = _resolve_file("threshold_config.json")
 
     print(f"[model_loader] Cargando encoder base '{MODEL_NAME}'...")
     encoder    = SentenceTransformer(MODEL_NAME)

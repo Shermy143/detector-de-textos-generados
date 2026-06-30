@@ -6,3 +6,4 @@ sentence-transformers>=3.0.0
 scikit-learn>=1.4.0
 numpy>=1.26.0
 sentencepiece>=0.2.0
+huggingface-hub>=0.23.0
