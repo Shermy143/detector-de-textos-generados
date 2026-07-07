@@ -30,11 +30,6 @@ export default function LandingPage({ onContinue }) {
             />
           </div>
 
-          {/* Badge institucional */}
-          <span className="landing__badge">
-            <span className="material-symbols-outlined" style={{ fontSize: '0.9rem' }}>school</span>
-            Universidad de Guayaquil · IA
-          </span>
 
           {/* Título principal */}
           <h1 className="landing__university-name">
