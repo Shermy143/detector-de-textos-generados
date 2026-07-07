@@ -74,6 +74,12 @@ export default function LandingPage({ onContinue }) {
           {/* Divisor */}
           <div className="landing__divider" aria-hidden="true" />
 
+          {/* Tutor */}
+          <div className="landing__tutor" aria-label="Tutor del proyecto">
+            <span className="landing__tutor-label">Tutor</span>
+            <span className="landing__tutor-name">Ing. Cesar Espín-Riofrío</span>
+          </div>
+
           {/* Creadores */}
           <footer className="landing__authors" aria-label="Autores del proyecto">
             <span className="landing__authors-label">Desarrollado por</span>
