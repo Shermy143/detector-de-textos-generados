@@ -119,12 +119,14 @@ function ErrorState({ message }) {
 
 /* ── Main component ────────────────────────────────────────────────────────── */
 export default function ResultsPanel({ loading, result, error }) {
+  /* Sin análisis previo: no renderizar panel */
+  if (!loading && !error && !result) return null
+
   return (
     <aside className="results" aria-label="Panel de resultados">
       {loading && <LoadingState />}
       {!loading && error && <ErrorState message={error} />}
       {!loading && !error && result && <ResultState result={result} />}
-      {!loading && !error && !result && <IdleState />}
     </aside>
   )
 }

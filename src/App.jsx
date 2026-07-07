@@ -51,7 +51,10 @@ export default function App() {
   /* Detector page */
   return (
     <div className="app">
-      <Navbar />
+      <Navbar onBack={() => {
+          window.scrollTo({ top: 0, behavior: 'instant' })
+          setView('landing')
+        }} />
 
       <main id="detector" className="detector" aria-label="Detector de texto IA">
         <div className="detector__workspace">

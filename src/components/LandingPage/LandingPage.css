@@ -1,24 +1,23 @@
 /* ─────────────────────────────────────────────────────────────────────────────
-   LandingPage component — BEM: .landing
+   LandingPage — BEM: .landing
 ───────────────────────────────────────────────────────────────────────────── */
 .landing {
-  min-height:     100vh;
-  display:        flex;
-  flex-direction: column;
-  align-items:    center;
+  min-height:      100vh;
+  display:         flex;
+  align-items:     center;
   justify-content: center;
-  padding:        3rem 1.5rem;
-  background:     linear-gradient(160deg, #f0f8fc 0%, var(--color-surface) 55%, #eaf3f7 100%);
-  position:       relative;
-  overflow:       hidden;
+  padding:         3rem 2rem;
+  background:      linear-gradient(160deg, #f0f8fc 0%, var(--color-surface) 55%, #eaf3f7 100%);
+  position:        relative;
+  overflow:        hidden;
 }
 
 /* Círculos decorativos de fondo */
 .landing::before,
 .landing::after {
-  content:       '';
-  position:      absolute;
-  border-radius: 50%;
+  content:        '';
+  position:       absolute;
+  border-radius:  50%;
   pointer-events: none;
 }
 
@@ -38,27 +37,57 @@
   background: radial-gradient(circle, rgba(1, 57, 114, 0.06) 0%, transparent 70%);
 }
 
-/* ─── Tarjeta central ─────────────────────────────────────────────────────── */
-.landing__card {
-  position:       relative;
-  z-index:        1;
-  background:     rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-radius:  var(--radius-xl);
-  padding:        3.5rem 3rem;
-  max-width:      620px;
-  width:          100%;
-  box-shadow:     0 8px 40px -8px rgba(0, 103, 126, 0.12), 0 1px 0 rgba(255,255,255,0.8) inset;
-  outline:        1px solid rgba(188, 201, 206, 0.2);
-  text-align:     center;
-  display:        flex;
-  flex-direction: column;
-  align-items:    center;
-  gap:            2rem;
+/* ─── Layout principal — 2 columnas ──────────────────────────────────────── */
+.landing__content {
+  position:        relative;
+  z-index:         1;
+  display:         grid;
+  grid-template-columns: 1fr 1fr;
+  gap:             3rem;
+  align-items:     center;
+  max-width:       1200px;
+  width:           100%;
 }
 
-/* ─── Cabecera ────────────────────────────────────────────────────────────── */
+/* ─── Columna izquierda ──────────────────────────────────────────────────── */
+.landing__left {
+  display:        flex;
+  flex-direction: column;
+  align-items:    flex-start;
+  gap:            1.5rem;
+}
+
+/* ─── Logos institucionales ──────────────────────────────────────────────── */
+.landing__logos {
+  display:     flex;
+  align-items: center;
+  gap:         1.25rem;
+}
+
+.landing__logo {
+  height:     5rem;
+  width:      auto;
+  object-fit: contain;
+  filter:     drop-shadow(0 2px 8px rgba(0, 103, 126, 0.12));
+  transition: transform 0.3s ease;
+}
+
+.landing__logo:hover {
+  transform: scale(1.05);
+}
+
+.landing__logo--facultad {
+  height: 4.5rem;
+}
+
+.landing__logos-divider {
+  width:            2px;
+  height:           3.5rem;
+  background:       linear-gradient(180deg, transparent, rgba(31, 185, 222, 0.4), transparent);
+  border-radius:    var(--radius-full);
+}
+
+/* ─── Badge institucional ────────────────────────────────────────────────── */
 .landing__badge {
   display:        inline-flex;
   align-items:    center;
@@ -75,13 +104,24 @@
   color:          var(--color-primary-dark);
 }
 
+/* ─── Título — Universidad de Guayaquil ──────────────────────────────────── */
+.landing__university-name {
+  font-family:    var(--font-headline);
+  font-size:      clamp(2rem, 5vw, 3.5rem);
+  font-weight:    900;
+  color:          var(--color-secondary);
+  line-height:    1.1;
+  letter-spacing: -0.03em;
+}
+
+/* ─── Subtítulo — Detector de texto ──────────────────────────────────────── */
 .landing__title {
   font-family:    var(--font-headline);
-  font-size:      clamp(1.75rem, 4vw, 2.5rem);
-  font-weight:    800;
+  font-size:      clamp(1.25rem, 3vw, 1.75rem);
+  font-weight:    700;
   color:          var(--color-secondary);
-  line-height:    1.15;
-  letter-spacing: -0.03em;
+  line-height:    1.25;
+  letter-spacing: -0.02em;
 }
 
 .landing__title span {
@@ -101,17 +141,24 @@
   align-items:    flex-start;
   gap:            0.85rem;
   padding:        0.9rem 1.1rem;
-  background:     var(--color-surface-low);
+  background:     rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(8px);
   border-radius:  var(--radius-md);
   text-align:     left;
-  outline:        1px solid rgba(188, 201, 206, 0.12);
+  outline:        1px solid rgba(188, 201, 206, 0.15);
+  transition:     transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.landing__info-item:hover {
+  transform:  translateY(-2px);
+  box-shadow: 0 6px 20px -4px rgba(0, 103, 126, 0.1);
 }
 
 .landing__info-icon {
-  font-size:  1.3rem;
-  color:      var(--color-primary);
+  font-size:   1.3rem;
+  color:       var(--color-primary);
   flex-shrink: 0;
-  margin-top: 0.05rem;
+  margin-top:  0.05rem;
 }
 
 .landing__info-text {
@@ -146,14 +193,14 @@
 .landing__divider {
   width:      100%;
   height:     1px;
-  background: linear-gradient(90deg, transparent, rgba(188, 201, 206, 0.4), transparent);
+  background: linear-gradient(90deg, rgba(188, 201, 206, 0.4), transparent);
 }
 
 /* ─── Creadores ───────────────────────────────────────────────────────────── */
 .landing__authors {
   display:        flex;
   flex-direction: column;
-  align-items:    center;
+  align-items:    flex-start;
   gap:            0.5rem;
 }
 
@@ -170,14 +217,14 @@
   display:        flex;
   flex-direction: column;
   gap:            0.3rem;
-  align-items:    center;
+  align-items:    flex-start;
 }
 
 .landing__author {
-  font-family: var(--font-headline);
-  font-size:   0.95rem;
-  font-weight: 700;
-  color:       var(--color-secondary);
+  font-family:    var(--font-headline);
+  font-size:      0.95rem;
+  font-weight:    700;
+  color:          var(--color-secondary);
   letter-spacing: -0.01em;
 }
 
@@ -207,4 +254,116 @@
 
 .landing__btn:active {
   transform: scale(0.96);
+}
+
+/* ─── Columna derecha — imagen hero ──────────────────────────────────────── */
+.landing__right {
+  display:         flex;
+  align-items:     center;
+  justify-content: center;
+}
+
+.landing__hero-wrapper {
+  position: relative;
+  width:    100%;
+  max-width: 520px;
+}
+
+.landing__hero-image {
+  width:         100%;
+  height:        auto;
+  border-radius: var(--radius-xl);
+  box-shadow:    0 20px 60px -12px rgba(1, 57, 114, 0.25),
+                 0 8px 24px -4px rgba(31, 185, 222, 0.15);
+  animation:     heroFloat 4s ease-in-out infinite;
+  object-fit:    cover;
+}
+
+/* Glow decorativo detrás de la imagen */
+.landing__hero-glow {
+  position:      absolute;
+  top:           50%;
+  left:          50%;
+  transform:     translate(-50%, -50%);
+  width:         80%;
+  height:        80%;
+  border-radius: 50%;
+  background:    radial-gradient(circle, rgba(31, 185, 222, 0.15) 0%, rgba(1, 57, 114, 0.08) 50%, transparent 70%);
+  z-index:       -1;
+  filter:        blur(40px);
+  animation:     glowPulse 4s ease-in-out infinite alternate;
+}
+
+/* ─── Animaciones ─────────────────────────────────────────────────────────── */
+@keyframes heroFloat {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-12px); }
+}
+
+@keyframes glowPulse {
+  0%   { opacity: 0.6; transform: translate(-50%, -50%) scale(1); }
+  100% { opacity: 1;   transform: translate(-50%, -50%) scale(1.1); }
+}
+
+/* ─── Responsive ──────────────────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .landing__content {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .landing__left {
+    align-items: center;
+    text-align:  center;
+  }
+
+  .landing__university-name {
+    text-align: center;
+  }
+
+  .landing__title {
+    text-align: center;
+  }
+
+  .landing__info-item {
+    text-align: left;
+  }
+
+  .landing__divider {
+    background: linear-gradient(90deg, transparent, rgba(188, 201, 206, 0.4), transparent);
+  }
+
+  .landing__authors {
+    align-items: center;
+  }
+
+  .landing__authors-list {
+    align-items: center;
+  }
+
+  .landing__right {
+    order: -1;
+  }
+
+  .landing__hero-wrapper {
+    max-width: 360px;
+  }
+}
+
+@media (max-width: 480px) {
+  .landing {
+    padding: 2rem 1rem;
+  }
+
+  .landing__logo {
+    height: 3.5rem;
+  }
+
+  .landing__logo--facultad {
+    height: 3rem;
+  }
+
+  .landing__hero-wrapper {
+    max-width: 280px;
+  }
 }
