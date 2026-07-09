@@ -1,9 +1,9 @@
 /* Página de presentación del proyecto */
 import './LandingPage.css'
 
-import logoUG       from '../../assets/logo-ug.png'
+import logoUG from '../../assets/logo-ug.png'
 import logoFacultad from '../../assets/logo-facultad.png'
-import heroIA       from '../../assets/IA.jpg'
+import heroIA from '../../assets/IA.jpg'
 
 export default function LandingPage({ onContinue }) {
   return (
@@ -77,7 +77,7 @@ export default function LandingPage({ onContinue }) {
           {/* Tutor */}
           <div className="landing__tutor" aria-label="Tutor del proyecto">
             <span className="landing__tutor-label">Tutor</span>
-            <span className="landing__tutor-name">Ing. Cesar Espín-Riofrío</span>
+            <span className="landing__tutor-name">Ing. César Espín-Riofrío</span>
           </div>
 
           {/* Creadores */}
