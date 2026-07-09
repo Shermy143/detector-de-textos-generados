@@ -17,15 +17,15 @@
 
 /* ─── Header row ──────────────────────────────────────────────────────────── */
 .results__header {
-  display:         flex;
-  flex-direction:  column;
-  gap:             0.75rem;
+  display:          flex;
+  flex-direction:   column;
+  justify-content:  space-between;
 }
 
 .results__meta-label {
   font-family:    var(--font-body);
   font-weight:    700;
-  font-size:      0.6rem;
+  font-size:      0.65rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color:          var(--color-on-surface-variant);
@@ -45,20 +45,42 @@
 .results__title--human  { color: #1a8d5f; }
 .results__title--uncertain { color: #92600a; }
 
-/* ─── Confidence badge ────────────────────────────────────────────────────── */
+/* ─── Confidence badge (destacado) ───────────────────────────────────────── */
 .results__confidence {
-  text-align: right;
+  text-align:     right;
+  display:        flex;
+  flex-direction: column;
+  align-items:    flex-end;
+  justify-content: space-between;
+}
+
+.results__confidence .results__meta-label {
+  font-size:      0.72rem;
+  font-weight:    800;
+  letter-spacing: 0.1em;
+  color:          var(--color-on-surface-variant);
 }
 
 .results__confidence-value {
   font-family:  var(--font-headline);
-  font-size:    2rem;
-  font-weight:  700;
+  font-size:    2.5rem;
+  font-weight:  800;
   color:        var(--color-primary);
+  line-height:  1;
+  text-shadow:  0 0 24px rgba(99, 102, 241, 0.25);
 }
 
-.results__confidence--human     .results__confidence-value { color: #1a8d5f; }
-.results__confidence--uncertain .results__confidence-value { color: #92600a; }
+
+.results__confidence--human .results__confidence-value {
+  color: #1a8d5f;
+  text-shadow: 0 0 24px rgba(26, 141, 95, 0.25);
+}
+
+
+.results__confidence--uncertain .results__confidence-value {
+  color: #92600a;
+  text-shadow: 0 0 24px rgba(146, 96, 10, 0.25);
+}
 
 /* ─── Abstention badge ─────────────────────────────────────────────────────── */
 .results__abstain-badge {
@@ -78,24 +100,45 @@
 .results__top-row {
   display:         flex;
   flex-direction:  row;
-  align-items:     flex-end;
+  align-items:     stretch;
   justify-content: space-between;
   flex-wrap:       wrap;
   gap:             1rem;
 }
 
-/* ─── Progress bar ────────────────────────────────────────────────────────── */
-.results__bar-wrapper { display: flex; flex-direction: column; gap: 0.5rem; }
+/* ─── Dual progress bars (IA + Humano) ───────────────────────────────────── */
+.results__bars {
+  display:        flex;
+  flex-direction: column;
+  gap:            1rem;
+}
 
-.results__bar-labels {
+.results__bar-row {
+  display:        flex;
+  flex-direction: column;
+  gap:            0.4rem;
+}
+
+.results__bar-label-row {
   display:         flex;
   justify-content: space-between;
-  font-family:     var(--font-headline);
-  font-size:       0.6rem;
-  font-weight:     700;
-  letter-spacing:  0.1em;
-  text-transform:  uppercase;
-  color:           var(--color-on-surface-variant);
+  align-items:     center;
+}
+
+.results__bar-label {
+  font-family:    var(--font-headline);
+  font-size:      0.65rem;
+  font-weight:    700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color:          var(--color-on-surface-variant);
+}
+
+.results__bar-percent {
+  font-family:  var(--font-headline);
+  font-size:    0.8rem;
+  font-weight:  700;
+  color:        var(--color-on-surface);
 }
 
 .results__bar-track {
@@ -109,17 +152,27 @@
 .results__bar-fill {
   height:        100%;
   border-radius: var(--radius-full);
-  background:    linear-gradient(90deg, var(--color-secondary), var(--color-primary));
   position:      relative;
   overflow:      hidden;
   transition:    width 0.8s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+/* Gradiente para barra IA */
+.results__bar-fill--ai {
+  background: linear-gradient(90deg, var(--color-secondary), var(--color-primary));
+}
+
+/* Gradiente para barra Humano */
+.results__bar-fill--human {
+  background: linear-gradient(90deg, #34d399, #1a8d5f);
+}
+
+/* Variante incierta */
 .results__bar-fill--uncertain {
   background: linear-gradient(90deg, #c47c00, #f59e0b);
 }
 
-/* Scanning animation stripe */
+/* Efecto scanning animado */
 .results__bar-fill::after {
   content:    '';
   position:   absolute;

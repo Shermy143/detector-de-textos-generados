@@ -74,17 +74,34 @@ function ResultState({ result }) {
         </div>
       </div>
 
-      {/* Progress bar */}
-      <div className="results__bar-wrapper">
-        <div className="results__bar-labels">
-          <span>Contenido Humano</span>
-          <span>Contenido IA</span>
+      {/* Dual progress bars */}
+      <div className="results__bars">
+        {/* Barra IA */}
+        <div className="results__bar-row">
+          <div className="results__bar-label-row">
+            <span className="results__bar-label">Contenido IA</span>
+            <span className="results__bar-percent">{result.ai_prob}%</span>
+          </div>
+          <div className="results__bar-track" role="progressbar" aria-valuenow={result.ai_prob} aria-valuemin={0} aria-valuemax={100}>
+            <div
+              className={`results__bar-fill ${isUncertain ? 'results__bar-fill--uncertain' : 'results__bar-fill--ai'}`}
+              style={{ width: `${result.ai_prob}%` }}
+            />
+          </div>
         </div>
-        <div className="results__bar-track" role="progressbar" aria-valuenow={result.ai_prob} aria-valuemin={0} aria-valuemax={100}>
-          <div
-            className={`results__bar-fill ${isUncertain ? 'results__bar-fill--uncertain' : ''}`}
-            style={{ width: `${result.ai_prob}%` }}
-          />
+
+        {/* Barra Humano */}
+        <div className="results__bar-row">
+          <div className="results__bar-label-row">
+            <span className="results__bar-label">Contenido Humano</span>
+            <span className="results__bar-percent">{result.human_prob}%</span>
+          </div>
+          <div className="results__bar-track" role="progressbar" aria-valuenow={result.human_prob} aria-valuemin={0} aria-valuemax={100}>
+            <div
+              className={`results__bar-fill ${isUncertain ? 'results__bar-fill--uncertain' : 'results__bar-fill--human'}`}
+              style={{ width: `${result.human_prob}%` }}
+            />
+          </div>
         </div>
       </div>
 
