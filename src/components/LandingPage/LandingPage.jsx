@@ -12,10 +12,8 @@ export default function LandingPage({ onContinue }) {
       {/* Layout principal: contenido izquierda + imagen derecha */}
       <div className="landing__content">
 
-        {/* ─── Columna izquierda ───────────────────────────────────── */}
-        <article className="landing__left">
-
-          {/* Logos institucionales */}
+        {/* ─── Fila superior: logos institucionales ──────────────────── */}
+        <div className="landing__top">
           <div className="landing__logos">
             <img
               className="landing__logo"
@@ -28,13 +26,15 @@ export default function LandingPage({ onContinue }) {
               src={logoFacultad}
               alt="Logo Facultad de Ciencias Matemáticas y Físicas"
             />
-          </div>
-
-
-          {/* Título principal */}
-          <h1 className="landing__university-name">
+            {/* Título principal */}
+            <h1 className="landing__university-name">
             Universidad de Guayaquil
-          </h1>
+            </h1>
+          </div>
+        </div>
+
+        {/* ─── Columna izquierda ───────────────────────────────────── */}
+        <article className="landing__left">
 
           {/* Subtítulo del detector */}
           <h2 className="landing__title">
@@ -88,6 +88,7 @@ export default function LandingPage({ onContinue }) {
               <span className="landing__author">Lara Jama Janis Odeth</span>
             </div>
           </footer>
+
 
           {/* CTA */}
           <button
