@@ -5,20 +5,16 @@
   display:        flex;
   flex-direction: column;
   min-height:     100vh;
+  background-color: var(--color-surface-normal);
 }
 
 /* ─── Detector section ────────────────────────────────────────────────────── */
 .detector {
   flex:       1;
   padding:    8rem 2rem 5rem;
-  max-width:  900px;
   margin:     0 auto;
   width:      100%;
 }
 
-/* Columna única centrada */
 .detector__workspace {
-  display:        flex;
-  flex-direction: column;
-  gap:            1.5rem;
 }
