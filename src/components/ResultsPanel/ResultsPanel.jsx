@@ -93,14 +93,12 @@ function ResultState({ result }) {
       </div>
 
       {/* Detail chips */}
-      <div className="results__chips">
+      <div className="results__chips results__chips--two">
         <div className="results__chip">
-          <span className="results__chip-label">Prob. IA</span>
-          <span className="results__chip-value">{result.ai_prob}%</span>
-        </div>
-        <div className="results__chip">
-          <span className="results__chip-label">Prob. Humano</span>
-          <span className="results__chip-value">{result.human_prob}%</span>
+          <span className="results__chip-label">
+            {isAI ? 'Prob. IA' : isUncertain ? 'Prob. Incierto' : 'Prob. Humano'}
+          </span>
+          <span className="results__chip-value">{result.confidence}%</span>
         </div>
         <div className="results__chip">
           <span className="results__chip-label">Palabras</span>

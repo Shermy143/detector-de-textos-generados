@@ -194,6 +194,11 @@
   gap:       0.75rem;
 }
 
+/* Variante con 2 chips */
+.results__chips--two {
+  grid-template-columns: repeat(2, 1fr);
+}
+
 .results__chip {
   padding:       1.1rem 1.25rem;
   background:    var(--color-surface-lowest);
