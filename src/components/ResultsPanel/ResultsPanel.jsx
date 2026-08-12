@@ -74,32 +74,19 @@ function ResultState({ result }) {
         </div>
       </div>
 
-      {/* Dual progress bars */}
+      {/* Barra de progreso unificada */}
       <div className="results__bars">
-        {/* Barra IA */}
         <div className="results__bar-row">
           <div className="results__bar-label-row">
-            <span className="results__bar-label">Contenido IA</span>
-            <span className="results__bar-percent">{result.ai_prob}%</span>
+            <span className="results__bar-label">
+              {isAI ? 'Contenido IA' : isUncertain ? 'Resultado Incierto' : 'Contenido Humano'}
+            </span>
+            <span className="results__bar-percent">{result.confidence}%</span>
           </div>
-          <div className="results__bar-track" role="progressbar" aria-valuenow={result.ai_prob} aria-valuemin={0} aria-valuemax={100}>
+          <div className="results__bar-track" role="progressbar" aria-valuenow={result.confidence} aria-valuemin={0} aria-valuemax={100}>
             <div
-              className={`results__bar-fill ${isUncertain ? 'results__bar-fill--uncertain' : 'results__bar-fill--ai'}`}
-              style={{ width: `${result.ai_prob}%` }}
-            />
-          </div>
-        </div>
-
-        {/* Barra Humano */}
-        <div className="results__bar-row">
-          <div className="results__bar-label-row">
-            <span className="results__bar-label">Contenido Humano</span>
-            <span className="results__bar-percent">{result.human_prob}%</span>
-          </div>
-          <div className="results__bar-track" role="progressbar" aria-valuenow={result.human_prob} aria-valuemin={0} aria-valuemax={100}>
-            <div
-              className={`results__bar-fill ${isUncertain ? 'results__bar-fill--uncertain' : 'results__bar-fill--human'}`}
-              style={{ width: `${result.human_prob}%` }}
+              className={`results__bar-fill ${isUncertain ? 'results__bar-fill--uncertain' : isAI ? 'results__bar-fill--ai' : 'results__bar-fill--human'}`}
+              style={{ width: `${result.confidence}%` }}
             />
           </div>
         </div>
