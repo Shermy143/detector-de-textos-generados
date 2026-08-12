@@ -19,6 +19,7 @@ export default function Editor({ text, onChange, onAnalyze, loading }) {
         onChange={(e) => onChange(e.target.value)}
         aria-label="Área de texto para análisis"
         spellCheck={false}
+        autoComplete="off"
       />
 
       <div className="editor__toolbar">
@@ -35,19 +36,32 @@ export default function Editor({ text, onChange, onAnalyze, loading }) {
           </div>
         </div>
 
-        {/* Analyze button */}
-        <button
-          id="analyze-btn"
-          className="editor__btn"
-          onClick={onAnalyze}
-          disabled={loading || wordCount === 0}
-          aria-busy={loading}
-        >
-          <span className="material-symbols-outlined" aria-hidden="true">
-            {loading ? 'hourglass_top' : 'analytics'}
-          </span>
-          {loading ? 'Analizando…' : 'Analizar'}
-        </button>
+        <div className="editor__actions">
+          {/*Clean button  */}
+          <button
+            id="clean-btn"
+            className='clean__btn'
+            onClick={() => onChange('')}
+          >
+            <span className="material-symbols-outlined" aria-hidden="true">
+              cleaning_services
+            </span>
+          </button>
+
+          {/* Analyze button */}
+          <button
+            id="analyze-btn"
+            className="editor__btn"
+            onClick={onAnalyze}
+            disabled={loading || wordCount === 0}
+            aria-busy={loading}
+          >
+            <span className="material-symbols-outlined" aria-hidden="true">
+              {loading ? 'hourglass_top' : 'analytics'}
+            </span>
+            {loading ? 'Analizando…' : 'Analizar'}
+          </button>
+        </div>
       </div>
     </div>
   )
